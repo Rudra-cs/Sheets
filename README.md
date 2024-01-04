@@ -11,3 +11,18 @@
   - Multiple Sheet Handling
 - New, Open, Download Sheets
 - Cut, Copy, Paste in multiple sheets
+
+#### Storage
+
+- 2D Matrix with objects
+  [100][26]
+  [ 0[],
+  1[],
+  2[],
+  ...
+  100[]
+  ]
+
+- Two way binding
+  - data modify
+  - UI modify
