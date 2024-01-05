@@ -26,3 +26,8 @@
 - Two way binding
   - data modify
   - UI modify
+
+#### Formula Evaluation - > Enter Key
+
+- Normal Expression -> e.g.:(10+20)
+- Dependency Expression -> eg: (A1+A2+10)
