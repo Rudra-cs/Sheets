@@ -14,7 +14,8 @@ for (let i = 0; i < rows; i++) {
       fontColor: "#000000",
       BGColor: "#111111", // Just for indication purpose
       value: "",
-      formual: "",
+      formula: "",
+      children: [],
     };
     sheetRow.push(cellProp);
   }
@@ -210,6 +211,9 @@ function addListenerToAttachCellProperties(cell) {
         rightAlign.style.backgroundColor = inactiveColorProp;
         break;
     }
+    let formulabar = document.querySelectorAll(".formula-bar");
+    formulabar.value = cellProp.formula;
+    cell.value = cellProp.value;
   });
 }
 

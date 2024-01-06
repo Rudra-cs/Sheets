@@ -31,3 +31,11 @@
 
 - Normal Expression -> e.g.:(10+20)
 - Dependency Expression -> eg: (A1+A2+10)
+
+(A1+A2)
+↪ Decode and access values
+
+(A1+A2) -> Encode
+(10+20) -> Decode
+
+Formula must be space separated
