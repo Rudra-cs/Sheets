@@ -211,7 +211,7 @@ function addListenerToAttachCellProperties(cell) {
         rightAlign.style.backgroundColor = inactiveColorProp;
         break;
     }
-    let formulabar = document.querySelectorAll(".formula-bar");
+    let formulabar = document.querySelector(".formula-bar");
     formulabar.value = cellProp.formula;
     cell.value = cellProp.value;
   });

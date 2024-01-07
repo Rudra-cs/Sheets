@@ -11,6 +11,7 @@ for (let i = 0; i < rows; i++) {
       removeChildFromParent(cellProp.formula);
       cellProp.formula = "";
       updateChildrenCells(address);
+      console.log(cellProp);
     });
   }
 }
@@ -75,6 +76,7 @@ function removeChildFromParent(formula) {
   }
 }
 
+// Evaluate the formula
 function evaluateFormula(formula) {
   let encodedFormula = formula.split(" ");
   for (let i = 0; i < encodedFormula.length; i++) {
@@ -88,6 +90,7 @@ function evaluateFormula(formula) {
   return eval(decodedFormula);
 }
 
+// Change the value after evaluation of the formula
 function setCellUIAndCellProp(evaluatedValue, formula, address) {
   let [cell, cellProp] = getCellAndCellProp(address);
 
