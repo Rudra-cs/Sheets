@@ -20,21 +20,59 @@ let formulabar = document.querySelector(".formula-bar");
 formulabar.addEventListener("keydown", (e) => {
   let inputFormula = formulabar.value;
   if (e.key === "Enter" && inputFormula) {
-    let evaluatedValue = evaluateFormula(inputFormula);
-
     // If change in formula, break P-C relation, evaluate new formula, add new P-C relation
     let address = addressBar.value;
     let [cell, cellProp] = getCellAndCellProp(address);
     if (inputFormula !== cellProp.formula)
       removeChildFromParent(cellProp.formula);
 
-    // To update UI and cell
+    addChildToGraphComponent(inputFormula, address);
+    // Check formula is cyclic or not, then only evaluate
+    let isCyclic = isGraphCyclic(graphComponentMatrix);
+    console.log(isCyclic);
+    if (isCyclic) {
+      alert("Your formula is cyclic!!");
+      removeChildFromGraphComponent(inputFormula, address);
+      return;
+    }
+
+    let evaluatedValue = evaluateFormula(inputFormula);
+    // To update UI and cellProp in DB
     setCellUIAndCellProp(evaluatedValue, inputFormula, address);
     addChildToParent(inputFormula);
 
     updateChildrenCells(address);
   }
 });
+
+function removeChildFromGraphComponent(formula, childAddress) {
+  let encodedFormula = formula.split(" ");
+  for (let i = 0; i < encodedFormula.length; i++) {
+    let asciiValue = encodedFormula[i].charCodeAt(0);
+    if (asciiValue >= 65 && asciiValue <= 90) {
+      let [prid, pcid] = decodeRIdCIdFromAdress(encodedFormula[i]);
+
+      // B1: A1 + 10
+      // rid -> i,cid -> j
+      graphComponentMatrix[prid][pcid].pop();
+    }
+  }
+}
+
+function addChildToGraphComponent(formula, childAddress) {
+  let [crid, ccid] = decodeRIdCIdFromAdress(childAddress);
+  let encodedFormula = formula.split(" ");
+  for (let i = 0; i < encodedFormula.length; i++) {
+    let asciiValue = encodedFormula[i].charCodeAt(0);
+    if (asciiValue >= 65 && asciiValue <= 90) {
+      let [prid, pcid] = decodeRIdCIdFromAdress(encodedFormula[i]);
+
+      // B1: A1 + 10
+      // rid -> i,cid -> j
+      graphComponentMatrix[prid][pcid].push([crid, ccid]);
+    }
+  }
+}
 
 function updateChildrenCells(parentAddress) {
   let [parentCell, parentCellProp] = getCellAndCellProp(parentAddress);

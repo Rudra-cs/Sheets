@@ -69,3 +69,27 @@ Algo->
   End - > dfsvis[node] = F
 - On already visited node, go back
 - vis[node] == T && dfsvis[node]==T => Cycle
+
+- Implementation: Grid-> cells => 2D Matrix
+  ↪ Storage-> 2D
+  ↪ Relation
+  ↪ Implement
+
+1. Storage
+
+[
+[ [],[],[],[] ],
+[ [],[],[],[] ],
+]
+
+Why Array?
+
+- So taking a node into consideration B1: A1 + 10 and if C1: A1 + 20 . S0, one node can have more than one dependencies so if we use array we can just push the new dependencies.
+
+A1: [B1,C1]
+
+2. How Relation?
+
+- So, to represent the relation we have to write it in the form of matrix array A1: [[0,1],[0,2]]
+
+3. Implementation
