@@ -93,3 +93,10 @@ A1: [B1,C1]
 - So, to represent the relation we have to write it in the form of matrix array A1: [[0,1],[0,2]]
 
 3. Implementation
+
+#### Color Tracking (cyclic Path)
+
+↪ Delay (color)
+↪ Wait (Sync)
+
+Our code running very fast in milliseconds so tu display the colors we have to delay it using setTimeout function in js
