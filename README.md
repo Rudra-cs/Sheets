@@ -100,3 +100,5 @@ A1: [B1,C1]
 ↪ Wait (Sync)
 
 Our code running very fast in milliseconds so tu display the colors we have to delay it using setTimeout function in js
+
+#### Data Storage

@@ -101,6 +101,10 @@ body {
   margin-right: 1rem;
 }
 
+.sheet-add-icon:hover {
+  cursor: pointer;
+}
+
 .sheets-folder-cont {
   height: 80%;
   display: inline-block;
@@ -108,13 +112,25 @@ body {
   width: calc(100vw - 2vw);
   display: flex;
   align-items: center;
+  overflow: auto;
 }
 
 .sheet-folder {
+  height: 80%;
   text-decoration: underline;
   font-weight: bold;
   text-decoration-thickness: 2px;
   font-size: 0.9rem;
+  /* background-color: lightblue; */
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sheet-content {
+  width: 5rem;
+  /* background-color: lightgreen; */
 }
 
 .grid-cont {
