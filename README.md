@@ -102,3 +102,13 @@ A1: [B1,C1]
 Our code running very fast in milliseconds so tu display the colors we have to delay it using setTimeout function in js
 
 #### Data Storage
+
+#### Cut, Copy, Paste
+
+↪ select range
+↪ copy
+↪ paste
+↪ cut (data remove)
+
+Select range -> ctrl+click
+↪ [ [],[] ] (top-left,bottom-right)
