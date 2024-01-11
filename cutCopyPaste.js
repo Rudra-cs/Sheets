@@ -48,11 +48,14 @@ function defaultSelectedCellsUI() {
 
 let copyData = [];
 copyBtn.addEventListener("click", (e) => {
+  if (rangeStorage.length < 2) return;
   copyData = [];
-  let strow = rangeStorage[0][0];
-  let stcol = rangeStorage[0][1];
-  let endrow = rangeStorage[1][0];
-  let endcol = rangeStorage[1][1];
+  let [strow, stcol, endrow, endcol] = [
+    rangeStorage[0][0],
+    rangeStorage[0][1],
+    rangeStorage[1][0],
+    rangeStorage[1][1],
+  ];
   for (let i = strow; i <= endrow; i++) {
     let copyRow = [];
     for (let j = stcol; j <= endcol; j++) {
@@ -64,13 +67,45 @@ copyBtn.addEventListener("click", (e) => {
   defaultSelectedCellsUI();
 });
 
+cutBtn.addEventListener("click", (e) => {
+  if (rangeStorage.length < 2) return;
+
+  let [strow, stcol, endrow, endcol] = [
+    rangeStorage[0][0],
+    rangeStorage[0][1],
+    rangeStorage[1][0],
+    rangeStorage[1][1],
+  ];
+  for (let i = strow; i <= endrow; i++) {
+    for (let j = stcol; j <= endcol; j++) {
+      let cellProp = sheetDB[i][j];
+      let cell = document.querySelector(`.cell[rid="${i}"][cid="${j}"]`);
+
+      // DB
+      cellProp.value = "";
+      cellProp.bold = false;
+      cellProp.italic = false;
+      cellProp.underline = false;
+      cellProp.fontSize = 14;
+      cellProp.fontFamily = "monospace";
+      cellProp.fontColor = "#000000";
+      cellProp.BGcolor = "#000000";
+      cellProp.alignment = "left";
+
+      // UI
+      cell.click();
+    }
+  }
+  defaultSelectedCellsUI();
+});
+
 pasteBtn.addEventListener("click", (e) => {
   // Paste cells data work
 
   if (rangeStorage.length < 2) return;
 
-  let rowDiff = math.abs(rangeStorage[0][0] - rangeStorage[1][0]);
-  let colDiff = math.abs(rangeStorage[0][1] - rangeStorage[1][1]);
+  let rowDiff = Math.abs(rangeStorage[0][0] - rangeStorage[1][0]);
+  let colDiff = Math.abs(rangeStorage[0][1] - rangeStorage[1][1]);
 
   // Target
   let address = addressBar.value;
@@ -88,6 +123,7 @@ pasteBtn.addEventListener("click", (e) => {
       // DB
       let data = copyData[r][c];
       let cellProp = sheetDB[i][j];
+
       cellProp.value = data.value;
       cellProp.bold = data.bold;
       cellProp.italic = data.italic;

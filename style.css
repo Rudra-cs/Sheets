@@ -7,6 +7,11 @@ body {
   margin: 0;
 }
 
+.selected-page-action {
+  background-color: #ecf0f1;
+  color: #218c74 !important;
+}
+
 .page-actions-cont {
   height: 3rem;
   background-color: #218c74;
@@ -15,7 +20,12 @@ body {
   padding-left: 1rem;
 }
 .page-action {
-  margin: 0.5rem;
+  width: 3.5rem;
+  height: 2rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: #f1f2f6;
 }
 .cellprop-actions-cont {
